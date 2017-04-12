@@ -30,7 +30,6 @@ var Connect = function()
 {
 	mCHAR_CONNECT_CON.on('data', function(data) {
 		if ( uCheckConnectState || parseInt(data[0]) > 11 ) return;
-		console.log('Recv 3',uCheckDataState, data);
 		data.copy( mRecvData, 0, 0, data.length );
 		if( parseInt(mRecvData[0]) == 0 && data.length == 1)
 		{
@@ -45,7 +44,6 @@ var Connect = function()
 var Recv = function()
 {
 	mCHAR_CONNECT_CON.on('data', function(data) {
-		console.log('Recv 33',uCheckDataState, data);
 		data.copy( mRecvData, 0, 0, data.length );
 	});
 }
@@ -82,17 +80,13 @@ var U_REGISTER_USER_FOR_LOGIN_1_SEND = function( tUserIndex, uIP, uID, uUserSort
 	mSendData.write( uID.toString(), 1 + 16, MAX_USER_ID_LENGTH );
 	mSendData.writeInt32LE( uUserSort, 1 + 16 + MAX_USER_ID_LENGTH );
 	mSendData.writeInt32LE( uTraceState, 1 + 16 + 4 + MAX_USER_ID_LENGTH );	
-	uCheckDataState = false;
 	while ( true )
 	{
 		if ( ProcessForNetwork() )
 			break;
 	}	
 	mCHAR_CONNECT_CON.on('data', function(data) {
-		console.log('Recv 33',uCheckDataState, data);
-		data.copy( mRecvData, 0, 0, data.length );
-		console.log('Recv 04', mRecvData[0]);	
-		console.log('Recv 4', mRecvData.readInt32LE(1, 4));	
+		data.copy( mRecvData, 0, 0, data.length );	
 		return callback(mRecvData.readInt32LE(1, 4), mRecvData.readInt32LE(5, 4));
 	});
 }
