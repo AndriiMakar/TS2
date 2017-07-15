@@ -78,6 +78,15 @@ var ReturnAddDate = function( tPostDateValue, tAddDayValue )
 	//$a = $tAddDayValue .' days';
 	//date_add($date,date_interval_create_from_date_string($a));
 	//return date_format($date,"Ymd");
+	
+	//js version
+	var s = tPostDateValue;
+	if(tPostDateValue == 0)	
+		s = sprintf( '%04d-%02d-%02d', d.getFullYear(), d.getMonth + 1, d.getDate() );
+	else
+		s = sprintf( '%04d-%02d-%02d', s.substr(0,4), s.substr(4,2), s.substr(6,2) );
+	var d = new Date(s);
+	d.setDate( d.getDate() + tAddDayValue );
 }
 var ReturnSubDate = function( tPostDateValue, tSubDayValue )
 {
