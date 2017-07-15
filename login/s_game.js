@@ -68,15 +68,16 @@ var ReturnTime = function()
 }
 var ReturnAddDate = function( tPostDateValue, tAddDayValue )
 {
-	var d = new Date();
-	var r = new Date( d.getTime() + ( 86409000 * tAddDayValue ) );
-	var s = sprintf( '%04d%02d%02d', r.getFullYear(), ( r.getMonth() + 1 ), r.getDate() );
-	var tPresentDateValue = ReturnTime();
-	//if( tPostDateValue > tPresentDateValue )
-	//{
-		
-	//}
-	//console.log( s );
+	//php version
+	//$s;
+	//if($tPostDateValue == 0)	
+	//	$s = sprintf( '%04d-%02d-%02d', date("Y"), date("m"), date("d") );
+	//else
+	//	$s = sprintf( '%04d-%02d-%02d', substr($tPostDateValue,0,4), substr($tPostDateValue,4,2), substr($tPostDateValue,6,2) );
+	//$date=date_create(date($s));
+	//$a = $tAddDayValue .' days';
+	//date_add($date,date_interval_create_from_date_string($a));
+	//return date_format($date,"Ymd");
 }
 var ReturnSubDate = function( tPostDateValue, tSubDayValue )
 {
